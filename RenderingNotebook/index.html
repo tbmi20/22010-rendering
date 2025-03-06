@@ -91,7 +91,7 @@
                 const bbox = new THREE.Box3().setFromObject(bunny);
                 const size = bbox.getSize(new THREE.Vector3());
                 const scaleFactor = 0.5 / Math.max(size.x, size.y, size.z); 
-                bunny.scale.set(0.25, 0.25, 0.25);
+                bunny.scale.set(scaleFactor, scaleFactor, scaleFactor);
                 bunny.position.set(0, 0, 0); 
                 
                 bunny.traverse(child => {
