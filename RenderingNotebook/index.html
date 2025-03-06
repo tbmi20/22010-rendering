@@ -90,9 +90,9 @@
                 
                 const bbox = new THREE.Box3().setFromObject(bunny);
                 const size = bbox.getSize(new THREE.Vector3());
-                const scaleFactor = 0.5 / Math.max(size.x, size.y, size.z); 
+                const scaleFactor = 1 / Math.max(size.x, size.y, size.z); 
                 bunny.scale.set(scaleFactor, scaleFactor, scaleFactor);
-                bunny.position.set(0, 0, 0); 
+                bunny.position.set(-0.26, 0, 0); 
                 
                 bunny.traverse(child => {
                     if (child.isMesh) {
@@ -142,14 +142,23 @@
                     rotationAxis = 'z';
                     resetRotation();
                     break;
-                case 'f':
-                    setRenderMode('face');
+                case '4':
+                    setCubeRenderMode('face');
                     break;
-                case 'e':
-                    setRenderMode('edge');
+                case '5':
+                    setCubeRenderMode('edge');
                     break;
-                case 'v':
-                    setRenderMode('vertex');
+                case '6':
+                    setCubeRenderMode('vertex');
+                    break;
+                case '7':
+                    setBunnyRenderMode('face');
+                    break;
+                case '8':
+                    setBunnyRenderMode('edge');
+                    break;
+                case '9':
+                    setBunnyRenderMode('vertex');
                     break;
             }
         }
@@ -158,11 +167,13 @@
             pivot.rotation.set(0, 0, 0);
         }
 
-        function setRenderMode(mode) {
+        function setCubeRenderMode(mode) {
             cube.visible = mode === 'face';
             cubeEdges.visible = mode === 'edge';
             cubeVertices.visible = mode === 'vertex';
-            
+        }
+
+        function setBunnyRenderMode(mode) {
             if (bunny) {
                 bunny.visible = mode === 'face';
                 bunnyEdges.visible = mode === 'edge';
