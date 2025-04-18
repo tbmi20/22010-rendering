@@ -30,7 +30,7 @@
         let rotationAxis = 'x';
         let renderMode = 'face';
 
-        const cubeSize = 5;
+        let cubeSize = 5;
 
         init();
         animate();
@@ -163,7 +163,17 @@
                 case '9':
                     setBunnyRenderMode('vertex');
                     break;
+                case '=': // '+' key (often requires shift, but '=' is the base key)
+                    scaleObjects(1.1); // Increase size by 10%
+                    break;
+                case '-': // '-' key
+                    scaleObjects(0.9); // Decrease size by 10%
+                    break;
             }
+        }
+
+        function scaleObjects(factor) {
+            pivot.scale.multiplyScalar(factor);
         }
 
         function resetRotation() {
